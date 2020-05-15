@@ -67,7 +67,7 @@ def home():
 # GET
 @app.route("/all_job", methods=["GET"])
 def all_jobs():
-  all_jobs = jobs_schema.query.all()
+  all_jobs = Job.query.all()
   result = jobs_schema.dump(all_jobs)
   print("hello")
   return jsonify(result)
