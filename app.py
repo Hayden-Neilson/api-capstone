@@ -13,30 +13,28 @@ CORS(app)
 heroku = Heroku(app)
 
 conn = psycopg2.connect(
-            dbname = "Capstone",
-            user = "postgres",
-            password = "Hneilson1",
-            host = "localhost",
+            dbname = "d89m3pip2ct7ar",
+            user = "zoviuuhymshtbp",
+            password = "dc4d54c8b49a399626258231af673639e4ff2ee7d5f2458598ca0ec83f5f6320",
+            host = "ec2-52-7-39-178.compute-1.amazonaws.com",
             port = "5432"
 )
 
-S = "SELECT job, company, salary FROM scraped_info"
+# S = "SELECT job, company, salary FROM scraped_info"
 
 cur = conn.cursor()
-res = cur.execute(S)
-list_info = cur.fetchall()
-print(S)
+# res = cur.execute(S)
+# list_info = cur.fetchall()
+# print(S)
 
 env = Env()
 env.read_env()
 DATABASE_URL = env("DATABASE_URL")
-  app.debug = True
-  app.config["SQLALCHEMY_DATABASE_URI"] = conn
-  print("DB connected")
   # app.config["SQLALCHEMY_DATABASE_URI"] = "http://127.0.0.1:5432/postgresql:/postgres:Hneilson1@localhost/Capstone"
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -66,7 +64,6 @@ jobs_schema = JobSchema(many=True)
 def home():
   print(S)
   return "<h1>Capstone API</h1>"
-  (S)
 
 # GET
 @app.route("/all_job", methods=["GET"])
