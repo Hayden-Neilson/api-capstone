@@ -12,17 +12,17 @@ app = Flask(__name__)
 CORS(app)
 heroku = Heroku(app)
 
-conn = psycopg2.connect(
-            dbname = "d89m3pip2ct7ar",
-            user = "zoviuuhymshtbp",
-            password = "dc4d54c8b49a399626258231af673639e4ff2ee7d5f2458598ca0ec83f5f6320",
-            host = "ec2-52-7-39-178.compute-1.amazonaws.com",
-            port = "5432"
-)
+# conn = psycopg2.connect(
+#             dbname = "d89m3pip2ct7ar",
+#             user = "zoviuuhymshtbp",
+#             password = "dc4d54c8b49a399626258231af673639e4ff2ee7d5f2458598ca0ec83f5f6320",
+#             host = "ec2-52-7-39-178.compute-1.amazonaws.com",
+#             port = "5432"
+# )
 
 # S = "SELECT job, company, salary FROM scraped_info"
 
-cur = conn.cursor()
+# cur = conn.cursor()
 # res = cur.execute(S)
 # list_info = cur.fetchall()
 # print(S)
@@ -67,12 +67,10 @@ def home():
 # GET
 @app.route("/all_job", methods=["GET"])
 def all_jobs():
-  # all_jobs = jobs_schema.query.all()
-  # result = jobs_schema.dump(all_jobs)
-
-  
+  all_jobs = jobs_schema.query.all()
+  result = jobs_schema.dump(all_jobs)
   print("hello")
-  return json.dumps(res)
+  return jsonify(result)
 
   # Get one by the id
 
