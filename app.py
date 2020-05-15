@@ -62,7 +62,6 @@ jobs_schema = JobSchema(many=True)
 
 @app.route("/", methods=["GET"])
 def home():
-  print(S)
   return "<h1>Capstone API</h1>"
 
 # GET
